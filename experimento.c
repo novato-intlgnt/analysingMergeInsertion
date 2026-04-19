@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200809L
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,9 +6,9 @@
 #include <time.h>
 
 #define STEP 5
-#define MAX_SIZE 500
+#define MAX_SIZE 1000
+#define REPS 40
 #define MIN_SIZE 5
-#define _POSIX_C_SOURCE 200809L
 
 static void insertionSort(int arr[], int n) {
   for (int i = 1; i < n; i++) {
@@ -131,18 +132,27 @@ int main(void) {
     size_t sizeArr = n * sizeof(int);
     int *baseArr = (int *)malloc(sizeArr);
     int *twinArr = (int *)malloc(sizeArr);
+
     if (baseArr == NULL || twinArr == NULL) {
       fprintf(stderr, "Error: no se pudo reservar memoria para n=%d\n", n);
       return EXIT_FAILURE;
     }
 
-    memcpy(twinArr, baseArr, sizeArr);
-    generateRandomArray(baseArr, n, 100000);
+    double sumInsertionTime = 0;
+    double sumMergeTime = 0;
 
-    double insertionTime = measureInsertionSort(baseArr, n);
-    double mergeTime = measureMergeSort(twinArr, n);
+    for (int i = 0; i < REPS; i++) {
+      generateRandomArray(baseArr, n, 10000);
+      memcpy(twinArr, baseArr, sizeArr);
 
-    printf("%d %.3f %.3f\n", n, insertionTime, mergeTime);
+      sumInsertionTime += measureInsertionSort(baseArr, n);
+      sumMergeTime += measureMergeSort(twinArr, n);
+    }
+
+    double avgInsertionTime = sumInsertionTime / 30.0;
+    double avgMergeTime = sumMergeTime / 30.0;
+
+    printf("%d %.3f %.3f\n", n, avgInsertionTime, avgMergeTime);
     free(baseArr);
     free(twinArr);
   }

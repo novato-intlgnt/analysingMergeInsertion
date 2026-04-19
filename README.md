@@ -25,15 +25,16 @@ El gráfico obtenido inicialmente muestra resultados inesperados (Merge Sort sie
 
 ## Problemas propuestos
 
-- [ ] **1. Detecte problemas en el experimento actual.**
+- [x] **1. Detecte problemas en el experimento actual.**
   - Se pasa el mismo array a ambos algoritmos, afecta la comparabilidad
   - En merge sort se reserva memoria dinamica, 2 veces por llamada recursiva.
-- [ ] **2. Corrija la comparabilidad entre algoritmos.**
+- [x] **2. Corrija la comparabilidad entre algoritmos.**
   - Efectivamente para n valores pequeños, insertion sort parece ser más rapido
-- [ ] **3. Amplíe el diseño de entradas.**
+- [x] **3. Amplíe el diseño de entradas.**
   - Se uso la funcion `memcpy()` para copiar eficientemente el array orginal
   - Se implemento constantes simbolicas, para modificar facilmente los parametros del experimento
-- [ ] **4. Refine la escala experimental.**
+- [x] **4. Refine la escala experimental.**
+  - Se aumento el rango a n, a partir de n = 200 merge sort parece ser mas rapido
 - [ ] **5. Repita mediciones.**
 - [ ] **6. Aplique alguna estrategia estadística.**
 - [ ] **7. Rediseñe el experimento de forma modular.**
