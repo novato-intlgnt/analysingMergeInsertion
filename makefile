@@ -1,9 +1,9 @@
 CC = gcc
-CFLAGS = -O2 -std=c11 -Wall -Wextra -pedantic -march=native
+CFLAGS = -O2 -std=c11 -Wall -Wextra -pedantic -march=native -lm
 TARGET = experimento
 DATA = results.dat
 SCRIPT = plot.gp
-GRAPH = graph.png
+GRAPH = ./proofs/graph.png
 
 all: $(GRAPH)
 
